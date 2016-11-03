@@ -11,4 +11,11 @@
     <!--注解扫描包路径-->
     <context:component-scan base-package="top.onos.gene.web"/>
 
+    <!--根据控制器处理方法返回的字符串拼接下方前缀，进行视图渲染-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
 </beans>
