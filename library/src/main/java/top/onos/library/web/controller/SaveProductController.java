@@ -1,7 +1,7 @@
 package top.onos.library.web.controller;
 
-import top.onos.library.web.model.Product;
-import top.onos.library.web.model.ProductForm;
+import top.onos.library.web.domain.Product;
+import top.onos.library.web.domain.ProductForm;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package top.onos.library.web.model;
+package top.onos.library.web.domain;
 
 import java.io.Serializable;
 
