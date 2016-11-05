@@ -19,6 +19,7 @@
     <!--提供@NumberFormatannotation,@DateTimeFormat,@Valid支持，读写XML支持(JAXB),读写JSON支持(Jackson)-->
     <mvc:annotation-driven/>
     <!--静态资源-->
+    <!--如果没有annotion-driven,下列配置会组织任意控制器被调用-->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
 
