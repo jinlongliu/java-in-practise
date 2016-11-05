@@ -15,6 +15,15 @@ import java.io.IOException;
  */
 public class DispatcherServlet extends HttpServlet {
 
+    /*
+    * Dispatcher servlet工作：
+    * 1.根据URI调用action
+    * 2.实例化正确的控制类
+    * 3.根据请求参数值构造表单bean
+    * 4.调用控制器对象的响应方法
+    * 5.转向一个视图（JSP页面）
+    * */
+
     private static final long serialVersionUID = 1585042023529337199L;
 
     @Override
@@ -42,11 +51,14 @@ public class DispatcherServlet extends HttpServlet {
 
         //根据请求区分分发不同handler
         String dispatchUrl = null;
+        /*根据URI调用正确action*/
         if (action.equals("product_input.action")) {
+            //实例化控制类
             InputProductController controller = new InputProductController();
             dispatchUrl = controller.handleRequest(req, resp);
         } else if (action.equals("product_save.action")) {
             SaveProductController controller = new SaveProductController();
+            //实例化控制类
             dispatchUrl = controller.handleRequest(req, resp);
         }
 
