@@ -55,11 +55,11 @@ public class DispatcherServlet extends HttpServlet {
         if (action.equals("product_input.action")) {
             //实例化控制类
             InputProductController controller = new InputProductController();
-            dispatchUrl = controller.handleRequest(req, resp);
+//            dispatchUrl = controller.handleRequest(req, resp);
         } else if (action.equals("product_save.action")) {
             SaveProductController controller = new SaveProductController();
             //实例化控制类
-            dispatchUrl = controller.handleRequest(req, resp);
+//            dispatchUrl = controller.handleRequest(req, resp);
         }
 
         //转发视图
