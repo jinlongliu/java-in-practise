@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by Liu on 2016/11/5.
  */
@@ -21,7 +23,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deleteCustomer() {
+    public String deleteCustomer(HttpSession session) {
         //do something here
         return "Success";
     }
