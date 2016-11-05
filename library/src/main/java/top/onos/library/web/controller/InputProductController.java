@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class InputProductController implements Controller {
 
+    /*相对于注解方式，实现Controller接口的控制类只能处理一个动作*/
     private static final Log logger = LogFactory.getLog(InputProductController.class);
 
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest,
