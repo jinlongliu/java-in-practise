@@ -5,14 +5,32 @@
     <!--Servlet 2.3/JSP 1.2不支持EL-->
 
     <display-name>Archetype Created Web Application</display-name>
-    <servlet>
+
+    <!--自定义DispatcherServlet注释掉，准备启用SpringMVC默认DispatcherServlet-->
+<!--    <servlet>
         <servlet-name>ProductServlet</servlet-name>
         <servlet-class>top.onos.library.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
-        <!--如果“/”后跟其他参数会报错-->
+        &lt;!&ndash;如果“/”后跟其他参数会报错&ndash;&gt;
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <!--默认加载配置文件为 springmvc-servlet.xml -->
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--通过初始化参数指定配置文件-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
