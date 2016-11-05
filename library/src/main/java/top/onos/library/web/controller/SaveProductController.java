@@ -41,11 +41,11 @@ public class SaveProductController implements Controller{
 
             //保存产品，DB持久化
 
-            return new ModelAndView("/WEB-INF/jsp/ProductDetails.jsp", "product", product);
+            return new ModelAndView("ProductDetails", "product", product);
         } else {
             req.setAttribute("errors", errors);
             req.setAttribute("form", productForm);
-            return new ModelAndView("/WEB-INF/jsp/ProductForm.jsp");
+            return new ModelAndView("ProductForm");
         }
     }
 }
