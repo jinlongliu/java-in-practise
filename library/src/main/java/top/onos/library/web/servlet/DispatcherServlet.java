@@ -1,4 +1,7 @@
-package top.onos.library.web.controller;
+package top.onos.library.web.servlet;
+
+import top.onos.library.web.controller.InputProductController;
+import top.onos.library.web.controller.SaveProductController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
