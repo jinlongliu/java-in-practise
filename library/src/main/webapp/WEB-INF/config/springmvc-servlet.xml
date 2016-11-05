@@ -13,7 +13,10 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--注释扫描路径-->
+    <!--扫描控制器类-->
     <context:component-scan base-package="top.onos.library.web.controller"/>
+    <!--扫描服务类-->
+    <context:component-scan base-package="top.onos.library.web.service"/>
 
     <!--自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter两个bean,JUnit单元测试需要-->
     <!--提供@NumberFormatannotation,@DateTimeFormat,@Valid支持，读写XML支持(JAXB),读写JSON支持(Jackson)-->
