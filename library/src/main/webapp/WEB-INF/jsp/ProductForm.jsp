@@ -5,6 +5,7 @@
   Time: 15:57
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,6 +13,16 @@
 </head>
 <body>
 <div>
+    <c:if test="${requestScope.errors != null}">
+        <p id="errors">
+            <h4>Errors!</h4>
+            <ul>
+                <c:forEach var="error" items="${requestScope.errors}">
+                    <li>${error}</li>
+                </c:forEach>
+            </ul>
+        </p>
+    </c:if>
     <form action="product_save.action" method="post">
         <fieldset>
             <legend>Add a product</legend>
