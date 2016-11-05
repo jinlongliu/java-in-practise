@@ -1,8 +1,12 @@
 package top.onos.library.web.controller;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.web.servlet.ModelAndView;
 import top.onos.library.web.domain.Product;
 import top.onos.library.web.domain.ProductForm;
 import top.onos.library.web.validator.ProductValidator;
+import org.springframework.web.servlet.mvc.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +16,12 @@ import java.util.List;
  * Created by Liu on 2016/11/5.
  */
 public class SaveProductController implements Controller{
-    public String handleRequest(HttpServletRequest req, HttpServletResponse resp) {
+
+    private static final Log logger = LogFactory.getLog(SaveProductController.class);
+
+    public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse resp) {
+        logger.info("SaveProductController called");
+
         ProductForm productForm = new ProductForm();
         //填充表单属性
         productForm.setName(req.getParameter("name"));
@@ -32,13 +41,11 @@ public class SaveProductController implements Controller{
 
             //保存产品，DB持久化
 
-            //为视图在范围变量内存储模型
-            req.setAttribute("product", product);
-            return "/WEB-INF/jsp/ProductDetails.jsp";
+            return new ModelAndView("/WEB-INF/jsp/ProductDetails.jsp", "product", product);
         } else {
             req.setAttribute("errors", errors);
             req.setAttribute("form", productForm);
-            return "/WEB-INF/jsp/ProductForm.jsp";
+            return new ModelAndView("/WEB-INF/jsp/ProductForm.jsp");
         }
     }
 }
