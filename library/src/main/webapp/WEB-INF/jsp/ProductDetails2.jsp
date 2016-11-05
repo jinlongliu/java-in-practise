@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Liu
@@ -9,7 +10,15 @@
 <html>
 <head>
     <title>Save Product</title>
-    <style type="text/css">@import url(css/main.css);</style>
+    <style type="text/css">
+        @import url("<c:url value="/css/main.css"/>");
+        /*
+        上述将解析为两种情况：
+        @import url("/css/main.css");
+        @import url("/applicationContext/css/main.css");
+        */
+
+    </style>
 </head>
 <body>
     <div id="global">
