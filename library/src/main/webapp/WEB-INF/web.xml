@@ -17,6 +17,10 @@
         &lt;!&ndash;如果“/”后跟其他参数会报错&ndash;&gt;
         <url-pattern>/</url-pattern>
     </servlet-mapping>-->
+    
+    <listener>
+        <listener-class>top.onos.library.web.listener.ContextLoaderListener</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>springmvc</servlet-name>
