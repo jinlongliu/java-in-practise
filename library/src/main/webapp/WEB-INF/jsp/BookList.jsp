@@ -36,6 +36,22 @@
             </tr>
         </c:forEach>
     </table>
+    <div>
+        <h2>EL Examples：</h2>
+        <p>${pageContext.request}</p>
+        <p>${initParam}</p>
+        <p>${pageContext.request.method}</p>
+        <p>${param}</p>
+        <p>${paramValues}</p>
+        <p>${paramValues.param1[1]}</p>
+        <p>${header}</p>
+        <p>${cookie}</p>
+        <p>${cookie.JSESSIONID.value}</p>
+        <p>${3>1?cookie:cookie.JSESSIONID.value}</p>
+        <p>${3>5?cookie:cookie.JSESSIONID.value}</p>
+        <p>${empty cookie}</p>
+        <p>${empty initParam}</p>
+    </div>
 </div>
 </body>
 </html>
