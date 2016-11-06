@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--引入JSTL标签库和表单标签库--%>
+<!DOCTYPE HTML>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,7 +21,7 @@
 <div id="global">
 <%-- commandName 模型属性的名称 --%>
     <%--与BookController中saveBook的参数绑定--%>
-<form:form commandName="book" action="book_save" method="post">
+<form:form commandName="book" action="book_save" method="post" enctype="multipart/form-data">
 
     <fieldset>
         <legend>Add a book</legend>
@@ -51,6 +52,10 @@
         <p>
             <label for="publish">Publish Date:</label>
             <form:input id="publish" path="publishDate"/>
+        </p>
+        <p>
+            <label for="image">Book Image:</label>
+            <input id="image" type="file" name="images[0]"/>
         </p>
         <p id="buttons">
             <input id="reset" type="reset" tabindex="4">

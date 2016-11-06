@@ -42,6 +42,13 @@
                 <label for="isbn">ISBN:</label>
                 <form:input id="isbn" path="isbn"/>
             </p>
+            <p>
+                <c:forEach items="${book.images}" var="image">
+                    <li>
+                        ${image.originalFilename}<img src="<c:url value="/image/"/>${image.originalFilename}"/>
+                    </li>
+                </c:forEach>
+            </p>
             <p id="buttons">
                 <input id="reset" type="reset" tabindex="4">
                 <input id="submit" type="submit" tabindex="5" value="Update Book">
