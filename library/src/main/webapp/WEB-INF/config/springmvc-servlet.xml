@@ -25,6 +25,7 @@
     <!--如果没有annotion-driven,下列配置会组织任意控制器被调用-->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/*.html" location="/"/>
+    <mvc:resources mapping="/image/**" location="/image/"/>
 
     <!--定义控制器bean-->
     <bean name="/product_input.action"
@@ -54,9 +55,11 @@
     </bean>
 
     <!--消息本地化自动判别浏览器accept-language-->
-    <bean id="localeResovler" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"></bean>
+    <bean id="localeResovler"
+          class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"></bean>
 
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
                 <bean class="org.springframework.format.datetime.DateFormatter">
@@ -64,5 +67,13 @@
                 </bean>
             </set>
         </property>
+    </bean>
+
+    <!--文件上传，使用commons-fileupload,commons-io时-->
+    <!--<bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>-->
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
 </beans>
