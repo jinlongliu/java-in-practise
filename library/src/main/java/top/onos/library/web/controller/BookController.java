@@ -5,6 +5,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import top.onos.library.web.domain.Book;
 import top.onos.library.web.domain.Category;
 import top.onos.library.web.service.BookService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -45,7 +48,20 @@ public class BookController {
 
     /*含@ModelAttribute注解，自动创建对象并传递给Model*/
     @RequestMapping(value = "/book_save")
-    public String saveBook(@ModelAttribute Book book) {
+    public String saveBook(@Valid @ModelAttribute Book book, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldError();
+            logger.info("Code:" + fieldError.getCode() + ", object:"
+                                + fieldError.getObjectName() + ", field:"
+                                + fieldError.getField() + ", message:"
+                                + fieldError.getDefaultMessage());
+            List<Category> categories = bookService.getAllCategories();
+            model.addAttribute("categories", categories);
+            model.addAttribute("book", book);
+            return "BookAddForm";
+        }
+
         Category category = bookService.getCategory(book.getCategory().getId());
         book.setCategory(category);
         bookService.save(book);

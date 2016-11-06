@@ -1,5 +1,6 @@
 package top.onos.library.web.domain;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ public class Book implements Serializable{
 
     private long id;
     private String isbn;
+    @Size(min = 1, max = 10)
     private String title;
     private Category category;
     private String author;
