@@ -45,6 +45,13 @@
             <label for="isbn">ISBN:</label>
             <form:input id="isbn" path="isbn"/>
         </p>
+        <p>
+            <form:errors path="publishDate"/>
+        </p>
+        <p>
+            <label for="publish">Publish Date:</label>
+            <form:input id="publish" path="publishDate"/>
+        </p>
         <p id="buttons">
             <input id="reset" type="reset" tabindex="4">
             <input id="submit" type="submit" tabindex="5" value="Add Book">

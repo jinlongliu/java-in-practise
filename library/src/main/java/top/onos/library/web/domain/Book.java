@@ -2,6 +2,7 @@ package top.onos.library.web.domain;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Liu on 2016/11/6.
@@ -16,6 +17,7 @@ public class Book implements Serializable{
     private String title;
     private Category category;
     private String author;
+    private Date publishDate;
 
     public Book() {
     }
@@ -66,5 +68,13 @@ public class Book implements Serializable{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
 }
