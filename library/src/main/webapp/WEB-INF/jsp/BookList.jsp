@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--部分JSP页面禁用EL表达式--%>
 <%@ page isELIgnored="false" %>
@@ -38,6 +40,7 @@
             </tr>
         </c:forEach>
     </table>
+
     <div>
         <h2>EL Examples：</h2>
         <p>${pageContext.request}</p>
@@ -56,6 +59,71 @@
     </div>
     <%--JSP脚本元素--%>
     <%! String color[] = {"red", "green", "blue"}; %>
+
+    <div>
+        <h2>JSTL Examples:</h2>
+        <p><c:out value="${cookie.JSESSIONID.value}" default="defaultValue"/></p>
+        <p><c:out value="${cookie.JSESSIONID.path}" default="defaultValue"/></p>
+        <p><c:set var="foo" value="Hello World"/></p>
+        <p><c:out value="${foo}"/></p>
+        <p><c:set var="foo2">Hello World2</c:set></p>
+        <p><c:out value="${foo2}"/></p>
+        <p><c:set target="${bookForJSTL}" property="author" value="LiuJinlong"/></p>
+        <p><c:set target="${bookForJSTL}" property="isbn">11-22-665302-2335</c:set></p>
+        <p><c:out value="${bookForJSTL.title}"/></p>
+        <p><c:out value="${bookForJSTL.author}"/></p>
+        <p><c:out value="${bookForJSTL.isbn}"/></p>
+        <p><c:remove var="foo"/></p>
+        <p>After foo deleted:<c:out value="${foo}"/></p>
+
+        <p><c:if test="${2>1}" var="testResult"/></p>
+        <p><c:out value="${testResult}"/></p>
+
+        <p><c:if test="${testResult}" var="testResult"> The result is true!  </c:if></p>
+        <p>
+            <%--只有一种选择，各个when相互排斥--%>
+            <c:choose>
+                <c:when test="${2 > 2}">
+                    Case 1
+                </c:when>
+                <c:when test="${3 > 3}">
+                    Case 2
+                </c:when>
+                <c:otherwise>
+                    Other case
+                </c:otherwise>
+            </c:choose>
+        </p>
+        <p>
+            <%--varStatus count属性用于循环计数 --%>
+            <c:forEach var="book" items="${books}" varStatus="status">
+                <c:if test="${status.count%2 !=0}">${status.count}</c:if>
+                <c:out value="${book.title}"/><br/>
+            </c:forEach>
+        </p>
+        <p>
+            <c:forTokens var="item" items="Liu,Tian,Wang,Ma,Zhao" delims=",">
+                <c:out value="${item}"/><br/>
+            </c:forTokens>
+        </p>
+        <p><fmt:formatNumber value="0.125" type="percent"/></p>
+        <p><fmt:formatDate type="both" value="${bookForJSTL.publishDate}" pattern="yyyy-MM-dd"/></p>
+        <fmt:timeZone value="GMT+12:00">
+            <p><fmt:formatDate type="both" value="${bookForJSTL.publishDate}" pattern="yyyy-MM-dd"/></p>
+        </fmt:timeZone>
+        <p><c:set var="myDate" value="2016/12/12"/></p>
+        <p><fmt:parseDate var="formattedDate" type="date" pattern="yyyy/MM/dd" value="${myDate}"/></p>
+
+        <p>${fn:contains(bookForJSTL.title, "Test")}</p>
+        <p>${fn:containsIgnoreCase(bookForJSTL.title, "TEST")}</p>
+        <p>${fn:endsWith(bookForJSTL.title, "TEST")}</p>
+        <p>${fn:endsWith(bookForJSTL.title, "Test")}</p>
+        <p>${fn:length(bookForJSTL.title)}</p>
+        <p>${fn:replace(bookForJSTL.title, "Test", "TEST")}</p>
+        <p>${fn:toLowerCase(bookForJSTL.title)}</p>
+        <p>${fn:toUpperCase(bookForJSTL.title)}</p>
+        <p>${fn:trim("    Hello World!    ")}</p>
+    </div>
 </div>
 <script type="text/javascript">
     console.log("Hello World");

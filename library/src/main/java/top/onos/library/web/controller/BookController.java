@@ -15,6 +15,7 @@ import top.onos.library.web.domain.Category;
 import top.onos.library.web.service.BookService;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -81,6 +82,12 @@ public class BookController {
         logger.info("book_list");
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
+
+        Book bookForJSTL = new Book();
+        bookForJSTL.setTitle("JSTL Test");
+        bookForJSTL.setPublishDate(new Date());
+        model.addAttribute("bookForJSTL", bookForJSTL);
+
         return "BookList";
     }
 
