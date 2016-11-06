@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,7 +21,9 @@
 </head>
 <body>
 <div id="global">
+    Current Locale: ${pageContext.response.locale}
     <h1>Book List</h1>
+    <h1><spring:message code="book.list.title"/></h1>
     <a href="<c:url value="/book_input"/> ">Add Book</a>
     <table>
         <tr>

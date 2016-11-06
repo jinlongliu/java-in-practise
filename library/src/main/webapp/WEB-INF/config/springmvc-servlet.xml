@@ -47,11 +47,14 @@
         <!--多个值采用basenames属性-->
         <!--<property name="basenames">
             <list>
-                <value>resouce/messages</value>
-                <value>resource/labels</value>
+                <value>/WEB-INF/resouce/messages</value>
+                <value>/WEB-INF/resource/labels</value>
             </list>
         </property>-->
     </bean>
+
+    <!--消息本地化自动判别浏览器accept-language-->
+    <bean id="localeResovler" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"></bean>
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
