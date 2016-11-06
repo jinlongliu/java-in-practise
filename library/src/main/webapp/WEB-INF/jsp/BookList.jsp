@@ -5,7 +5,7 @@
   Time: 14:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--部分JSP页面禁用EL表达式--%>
 <%@ page isELIgnored="false" %>
