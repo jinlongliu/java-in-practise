@@ -52,6 +52,11 @@
         <p>${empty cookie}</p>
         <p>${empty initParam}</p>
     </div>
+    <%--JSP脚本元素--%>
+    <%! String color[] = {"red", "green", "blue"}; %>
 </div>
+<script type="text/javascript">
+    console.log("Hello World");
+</script>
 </body>
 </html>
