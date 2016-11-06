@@ -111,6 +111,7 @@
     </div>
 </div>
 <form>
+    <%--multiple 支持一次选中多个文件，非多次选中文件--%>
     <input type="file" id="files" multiple/>
     <br/>
     <output id="selectedFiles"></output>
