@@ -10,11 +10,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import top.onos.library.web.domain.Book;
 import top.onos.library.web.domain.Category;
 import top.onos.library.web.service.BookService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,8 +54,11 @@ public class BookController {
 
     /*含@ModelAttribute注解，自动创建对象并传递给Model*/
     @RequestMapping(value = "/book_save")
-    public String saveBook(@Valid @ModelAttribute Book book, BindingResult bindingResult, Model model) {
+    public String saveBook(HttpServletRequest httpServletRequest,
+                           @Valid @ModelAttribute Book book,
+                           BindingResult bindingResult, Model model) {
 
+        /*判断表单验证*/
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
             logger.info("Code:" + fieldError.getCode() + ", object:"
@@ -61,6 +69,24 @@ public class BookController {
             model.addAttribute("categories", categories);
             model.addAttribute("book", book);
             return "BookAddForm";
+        }
+
+        List<MultipartFile> files = book.getImages();
+        List<String> fileNames = new ArrayList<String>();
+
+        if (null != files && files.size() > 0) {
+            for (MultipartFile multipartFile : files) {
+                String fileName = multipartFile.getOriginalFilename();
+                fileNames.add(fileName);
+
+                File imageFile = new File(httpServletRequest.getServletContext()
+                                                  .getRealPath("/image"), fileName);
+                try {
+                    multipartFile.transferTo(imageFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         Category category = bookService.getCategory(book.getCategory().getId());

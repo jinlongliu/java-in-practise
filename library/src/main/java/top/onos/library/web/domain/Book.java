@@ -1,8 +1,11 @@
 package top.onos.library.web.domain;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Liu on 2016/11/6.
@@ -18,6 +21,7 @@ public class Book implements Serializable{
     private Category category;
     private String author;
     private Date publishDate;
+    private List<MultipartFile> images;
 
     public Book() {
     }
@@ -76,5 +80,13 @@ public class Book implements Serializable{
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public List<MultipartFile> getImages() {
+        return images;
+    }
+
+    public void setImages(List<MultipartFile> images) {
+        this.images = images;
     }
 }
