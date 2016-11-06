@@ -31,6 +31,9 @@
             itemValue="id"/>
         </p>
         <p>
+            <form:errors path="title"/>
+        </p>
+        <p>
             <label for="title">Title:</label>
             <form:input id="title" path="title"/>
         </p>
