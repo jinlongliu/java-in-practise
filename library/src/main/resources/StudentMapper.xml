@@ -26,4 +26,7 @@
     <delete id="deleteStudent" parameterType="int">
         delete from student where stud_id=#{Id}
     </delete>
+    <select id="findAllByNameEmail" resultMap="StudentResult">
+        select stud_id, name, email, dob from student where name=#{param1} and email=#{param2}
+    </select>
 </mapper>

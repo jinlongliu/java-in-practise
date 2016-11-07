@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDao studentDao;
 
-    public List<Student> findAllStudnets() {
+    public List<Student> findAllStudents() {
         return null;
     }
 
@@ -76,6 +76,16 @@ public class StudentServiceImpl implements StudentService {
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
             studentMapper.deleteStudent(id);
             sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public List<Student> findAllByNameEmail(String name, String email) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            return studentMapper.findAllByNameEmail(name, email);
         } finally {
             sqlSession.close();
         }

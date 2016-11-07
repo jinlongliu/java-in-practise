@@ -15,4 +15,6 @@ public interface StudentMapper {
     void insertStudent(Student student);
 
     void deleteStudent(Integer id);
+
+    List<Student> findAllByNameEmail(String name, String email);
 }

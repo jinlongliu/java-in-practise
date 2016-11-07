@@ -38,7 +38,7 @@ public class StudentServiceTest {
         studentService = null;
     }
 
-    @Test
+//    @Test
     public void testFindAll() {
         Assert.assertNotNull(studentService);
         List<Student> students = studentService.findAll();
@@ -49,7 +49,7 @@ public class StudentServiceTest {
         System.out.println("This is a test method");
     }
 
-    @Test
+//    @Test
     public void testInserOne() {
         Student student = new Student();
         int i = 100;
@@ -63,17 +63,26 @@ public class StudentServiceTest {
         System.out.println(student1.toString());
     }
 
-    @Test
+//    @Test
     public void testFindOne() {
         Student student = studentService.findById(100);
         Assert.assertNotNull(student);
         logger.info(student.toString());
     }
 
-    @Test
+//    @Test
     public void testDeleteOne(){
         studentService.deleteOne(100);
 //        Student student = studentService.findById(100);
+    }
+
+    @Test
+    public void testFind2(){
+        List<Student> students =
+                studentService.findAllByNameEmail("Tian", "today@qq.com");
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
 
 
