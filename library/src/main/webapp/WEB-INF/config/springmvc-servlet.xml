@@ -87,5 +87,5 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-    <context:property-placeholder location="/WEB-INF/resource/jdbc.properties"/>
+    <context:property-placeholder location="/WEB-INF/jdbc.properties"/>
 </beans>
