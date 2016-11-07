@@ -25,14 +25,18 @@ public class ResourceController {
     private static final Log logger = LogFactory.getLog(ResourceController.class);
 
     @RequestMapping(value = "/login")
+
     public String login(@ModelAttribute Login login, HttpSession session,
                         Model model) {
+        /*ModelAttribute自动创建Login对象实例*/
         model.addAttribute("login", new Login());
         if ("paul".equals(login.getUserName()) &&
                 "secret".equals(login.getPassword())) {
             session.setAttribute("loggedIn", Boolean.TRUE);
+            /*判断凭证登录*/
             return "Main";
         } else {
+            /*进入登录页面*/
             return "LoginForm";
         }
     }
@@ -45,11 +49,16 @@ public class ResourceController {
             return "LoginForm";
         }
 
+        /*获取应用真实目录拼接文件目录*/
         String dataDirectory =request.
                 getServletContext().getRealPath("/WEB-INF/data");
+        /*基于文件目录和文件名创建文件对象实例*/
         File file = new File(dataDirectory, "secret.pdf");
         if (file.exists()) {
+            /*设置response相关属性*/
             response.setContentType("application/pdf");
+            /*服务端向客户端发文件，如果类型支持，浏览器默认打开，
+            *如果需要提示用户保存，则使用下列属性*/
             response.addHeader("Content-Disposition",
                                "attachment; filename=secret.pdf");
             byte[] buffer = new byte[1024];
@@ -67,6 +76,7 @@ public class ResourceController {
             } catch (IOException ex) {
 
             } finally {
+                /*关闭文件流操作*/
                 if (bis != null) {
                     try {
                         bis.close();
