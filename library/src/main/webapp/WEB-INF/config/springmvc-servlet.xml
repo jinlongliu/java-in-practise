@@ -17,6 +17,8 @@
     <context:component-scan base-package="top.onos.library.web.controller"/>
     <!--扫描服务类-->
     <context:component-scan base-package="top.onos.library.web.service"/>
+    <!--扫描DAO类注解，Data Access Object-->
+    <context:component-scan base-package="top.onos.library.web.dao"/>
 
     <!--自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter两个bean,JUnit单元测试需要-->
     <!--提供@NumberFormatannotation,@DateTimeFormat,@Valid支持，读写XML支持(JAXB),读写JSON支持(Jackson)-->
@@ -77,4 +79,13 @@
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
+
+    <!--依赖commons-dbcp包，dbcp2有兼容问题-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <context:property-placeholder location="/WEB-INF/resource/jdbc.properties"/>
 </beans>
