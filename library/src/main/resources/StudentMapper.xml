@@ -16,8 +16,12 @@
     <select id="findStudentById" parameterType="int" resultType="Student">
         select stud_id, name, email, dob from student where stud_id=#{Id}
     </select>
-    <insert id="insertStudent" parameterType="Student">
+    <!--<insert id="insertStudent" parameterType="Student">
         insert into student(stud_id, name, email, dob) values (#{studID},#{name},#{email},#{dob})
+    </insert>-->
+    <!--自增主键-->
+    <insert id="insertStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studID">
+        insert into student(name, email, dob) values (#{name},#{email},#{dob})
     </insert>
     <delete id="deleteStudent" parameterType="int">
         delete from student where stud_id=#{Id}
