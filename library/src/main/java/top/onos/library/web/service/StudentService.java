@@ -19,4 +19,6 @@ public interface StudentService {
     Student findById(Integer id);
 
     void insertOne(Student student);
+
+    void insertStudentSpring(Student student);
 }

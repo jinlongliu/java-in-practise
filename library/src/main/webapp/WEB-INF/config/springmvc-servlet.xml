@@ -4,13 +4,13 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
     <!--注释扫描路径-->
     <!--扫描控制器类-->
@@ -89,4 +89,24 @@
     </bean>
     <!--外在化应用参数的配置-->
     <context:property-placeholder location="/WEB-INF/jdbc.properties"/>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="mapperLocations" value="classpath:StudentMapper.xml" />-->
+        <!--下面mybatis-config中包含了StudentMapper.xml所以和上面重复-->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--通过MapperFactoryBean获取到mapper,注册为bean方法注入-->
+    <!--<bean id="studentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="top.onos.library.web.mappers.StudentMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>-->
+
+    <!--指定扫描mapper的包路径，这样上方的注册可取消，直接扫描自动注册为bean-->
+    <mybatis:scan base-package="top.onos.library.web.mappers" />
 </beans>

@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Liu on 2016/11/7.
  */
 public interface StudentDao {
-    List<Student> findAllStudnets();
+    List<Student> findAllStudents();
 
     Student findStudentById(Integer id);
 

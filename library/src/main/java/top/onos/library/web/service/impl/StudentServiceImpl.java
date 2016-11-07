@@ -99,4 +99,8 @@ public class StudentServiceImpl implements StudentService {
             sqlSession.close();
         }
     }
+
+    public void insertStudentSpring(Student student) {
+        studentDao.insertStudent(student);
+    }
 }
