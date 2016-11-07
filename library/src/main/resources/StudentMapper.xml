@@ -19,4 +19,7 @@
     <insert id="insertStudent" parameterType="Student">
         insert into student(stud_id, name, email, dob) values (#{studID},#{name},#{email},#{dob})
     </insert>
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where stud_id=#{Id}
+    </delete>
 </mapper>

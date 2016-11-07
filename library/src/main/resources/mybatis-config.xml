@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--全局参数设定-->
     <settings>
         <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
         <setting name="cacheEnabled" value="true"/>
@@ -26,7 +27,12 @@
 
     <environments default="dev">
         <environment id="dev">
+            <!--JDBC：应用自己维护事务-->
+            <!--MANAGED：应用服务器管理数据库连接周期，托管应用本身不管理事务-->
             <transactionManager type="JDBC"></transactionManager>
+            <!--UNPOOLED：每个操作创建连接，并关闭它-->
+            <!--POOLED：创建DB连接池，用完返还-->
+            <!--JNDI：从服务器配置好的JNDI数据源获取DB连接-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://www.onos.top/user"/>
