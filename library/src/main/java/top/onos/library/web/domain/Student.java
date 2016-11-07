@@ -1,5 +1,7 @@
 package top.onos.library.web.domain;
 
+import com.google.common.base.Objects;
+
 import java.util.Date;
 
 /**
@@ -44,4 +46,13 @@ public class Student {
         this.dob = dob;
     }
 
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("studID", studID)
+                .add("name", name)
+                .add("email", email)
+                .add("dob", dob)
+                .toString();
+    }
 }

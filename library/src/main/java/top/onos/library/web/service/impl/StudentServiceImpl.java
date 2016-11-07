@@ -69,4 +69,15 @@ public class StudentServiceImpl implements StudentService {
             sqlSession.close();
         }
     }
+
+    public void deleteOne(Integer id) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            studentMapper.deleteStudent(id);
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
 }
