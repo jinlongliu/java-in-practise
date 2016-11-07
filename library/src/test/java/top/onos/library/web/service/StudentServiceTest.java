@@ -76,13 +76,25 @@ public class StudentServiceTest {
 //        Student student = studentService.findById(100);
     }
 
-    @Test
+//    @Test
     public void testFind2(){
         List<Student> students =
                 studentService.findAllByNameEmail("Tian", "today@qq.com");
         for (Student student : students) {
             System.out.println(student);
         }
+    }
+
+    @Test
+    public void testInsert() {
+        Student student = new Student();
+        student.setName("Insert");
+        student.setEmail("today@qq.com");
+        student.setDob(new Date());
+        int i = studentService.insertStudent(student);
+        Student student1 = studentService.findById(i);
+        Assert.assertNotNull(student1);
+        System.out.println(student1.toString());
     }
 
 

@@ -12,7 +12,7 @@ public interface StudentService {
 
     Student findStudentById(Integer id);
 
-    void insertStudent(Student student);
+    int insertStudent(Student student);
 
     List<Student> findAll();
 
