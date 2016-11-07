@@ -7,7 +7,9 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.onos.library.web.domain.Student;
 import top.onos.library.web.service.impl.StudentServiceImpl;
@@ -19,6 +21,7 @@ import java.util.List;
 /**
  * Created by Liu on 2016/11/7.
  */
+@FixMethodOrder(MethodSorters.JVM)
 public class StudentServiceTest {
 
     private static final Log logger = LogFactory.getLog(StudentServiceTest.class);
@@ -57,13 +60,21 @@ public class StudentServiceTest {
         studentService.insertOne(student);
         Student student1 = studentService.findById(i);
         Assert.assertNotNull(student1);
-        System.out.println(student1);
+        System.out.println(student1.toString());
     }
 
     @Test
     public void testFindOne() {
-        Student student = studentService.findById(1);
+        Student student = studentService.findById(100);
         Assert.assertNotNull(student);
-        logger.info(student);
+        logger.info(student.toString());
     }
+
+    @Test
+    public void testDeleteOne(){
+        studentService.deleteOne(100);
+//        Student student = studentService.findById(100);
+    }
+
+
 }
