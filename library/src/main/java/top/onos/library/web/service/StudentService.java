@@ -15,4 +15,8 @@ public interface StudentService {
     void insertStudent(Student student);
 
     List<Student> findAll();
+
+    Student findById(Integer id);
+
+    void insertOne(Student student);
 }

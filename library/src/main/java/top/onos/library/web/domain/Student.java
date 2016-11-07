@@ -7,17 +7,17 @@ import java.util.Date;
  */
 public class Student {
 
-    private Integer studId;
+    private Integer studID;
     private String name;
     private String email;
     private Date dob;
 
-    public Integer getStudId() {
-        return studId;
+    public Integer getStudID() {
+        return studID;
     }
 
-    public void setStudId(Integer studId) {
-        this.studId = studId;
+    public void setStudID(Integer studID) {
+        this.studID = studID;
     }
 
     public String getName() {
@@ -43,4 +43,5 @@ public class Student {
     public void setDob(Date dob) {
         this.dob = dob;
     }
+
 }

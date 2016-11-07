@@ -46,4 +46,27 @@ public class StudentServiceImpl implements StudentService {
             sqlSession.close();
         }
     }
+
+    public Student findById(Integer id) {
+
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            return studentMapper.findStudentById(id);
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    public void insertOne(Student student) {
+        SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+        try {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            studentMapper.insertStudent(student);
+            /*新增数据得commit*/
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

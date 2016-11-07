@@ -20,6 +20,7 @@
     <!-- Continue going here -->
 
     <typeAliases>
+        <!--后续执行Stuent的类，不需要写完全限定名，直接Student即可-->
         <typeAlias type="top.onos.library.web.domain.Student" alias="Student"/>
     </typeAliases>
 

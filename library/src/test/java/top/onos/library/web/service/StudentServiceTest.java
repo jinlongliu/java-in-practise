@@ -13,6 +13,7 @@ import top.onos.library.web.domain.Student;
 import top.onos.library.web.service.impl.StudentServiceImpl;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,5 +44,26 @@ public class StudentServiceTest {
             System.out.println(student);
         }
         System.out.println("This is a test method");
+    }
+
+    @Test
+    public void testInserOne() {
+        Student student = new Student();
+        int i = 100;
+        student.setStudID(i);
+        student.setName("Tian");
+        student.setEmail("today@qq.com");
+        student.setDob(new Date());
+        studentService.insertOne(student);
+        Student student1 = studentService.findById(i);
+        Assert.assertNotNull(student1);
+        System.out.println(student1);
+    }
+
+    @Test
+    public void testFindOne() {
+        Student student = studentService.findById(1);
+        Assert.assertNotNull(student);
+        logger.info(student);
     }
 }
