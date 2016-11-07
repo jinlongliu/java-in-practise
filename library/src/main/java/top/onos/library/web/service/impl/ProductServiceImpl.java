@@ -1,7 +1,8 @@
-package top.onos.library.web.service;
+package top.onos.library.web.service.impl;
 
 import org.springframework.stereotype.Service;
 import top.onos.library.web.domain.Product;
+import top.onos.library.web.service.ProductService;
 
 import java.util.HashMap;
 import java.util.Map;
